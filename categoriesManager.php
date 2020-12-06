@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . 'categories.php';
+include __DIR__ . '/categories.php';
 
 $category = new Categories();
 $category_info = $category ->getById($_REQUEST['id']) ->fetch_assoc();
@@ -10,8 +10,8 @@ if(empty($category_info)){
 
 if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'save'){
 
-    $query = sprintf("UPDATE %s SET name = '%s', description = '%s' ",
-    Categories::$table_name, $_REQUEST['name'], $_REQUEST['description']);
+    $query = sprintf("UPDATE %s SET name = '%s', description = '%s' WHERE id = %d",
+    Categories::$table_name, $_REQUEST['name'], $_REQUEST['description'], $_REQUEST['id']);
 
     $category ->query($query);
     header('Location: ../public/indexAdmin.php');
