@@ -32,6 +32,7 @@ header('Location: ../public/indexAdmin.php');
     Description: <br><textarea name="description"></textarea> <br>
     Image: <input type="file" name="image"><br><br>
     <input type="submit" value="Add New Item">
+    <button type="submit" formaction="../public/indexAdmin.php">Back to Home</button>
 </form>
 </body>
 </html>
