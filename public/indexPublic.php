@@ -1,5 +1,6 @@
 <?php
 include '../manageItems/items.php';
+include '../manageCategories/categories.php';
 ?>
 
 <!DOCTYPE html>
@@ -33,11 +34,27 @@ include 'nav.php';
 include 'tb_layout_public.php';
 ?>
 <?php
-$item = new Items();
-$result = $item->getAll();
-echo '<table>';
-while($row = $result ->fetch_assoc()){
-    printf("<tr>
+if(isset($_GET['category'])) {
+    $category = new Categories();
+    $item = new Items();
+    $resultset = $category->getNames();
+
+    while ($rowset = $resultset->fetch_assoc()) {
+        if ($_GET['category'] == $rowset['name']) {
+            $result = $item->getByCategory($rowset['name']);
+            echo "<table>";
+        }
+        }
+    }
+
+    else {
+        $item = new Items();
+        $result = $item->getAll();
+        echo "<table>";
+    }
+            //echo '<table>';
+            while ($row = $result->fetch_assoc()) {
+                    printf("<tr>
 <td>%d</td>
 <td><img src='../images/%s'</td>
 <td>%s</td>
@@ -46,8 +63,10 @@ while($row = $result ->fetch_assoc()){
 <td>%s</td>
 </tr>
 ", $row['id'], $row['image'], $row['name'], $row['description'], $row['price'], $row['category']);
-}
-echo '</table>'
+            }
+echo '</table>';
+    //$item = new Items();
+    //$result = $item->getAll();
 ?>
 </body>
 </html>

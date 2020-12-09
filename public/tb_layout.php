@@ -73,9 +73,9 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="#">Cars</a>
-                    <a class="dropdown-item" href="#">Phones</a>
-                    <a class="dropdown-item" href="#">Clothing</a>
+                    <a class="dropdown-item" href="?category=cars">Cars</a>
+                    <a class="dropdown-item" href="?category=phones">Phones</a>
+                    <a class="dropdown-item" href="?category=clothing">Clothing</a>
                 </div>
             </li>
         </ul>
