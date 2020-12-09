@@ -60,7 +60,7 @@
                 <a class="nav-link" href="indexLogin.php">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Register Admin</a>
+                <a class="nav-link" href="../manageAdmins/addAdmin.php">Register Admin</a>
             </li>
             <!--<li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -68,9 +68,9 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="#">Cars</a>
-                    <a class="dropdown-item" href="#">Phones</a>
-                    <a class="dropdown-item" href="#">Clothing</a>
+                    <a class="dropdown-item" href="?category=cars">Cars</a>
+                    <a class="dropdown-item" href="?category=phones">Phones</a>
+                    <a class="dropdown-item" href="?category=clothing">Clothing</a>
                 </div>
             </li>
         </ul>

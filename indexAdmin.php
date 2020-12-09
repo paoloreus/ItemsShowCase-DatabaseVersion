@@ -45,7 +45,8 @@ else {
 include 'tb_layout.php';
 ?>
 <?php
-if(!isset($_GET['view']) || $_GET['view'] != 'categories') {
+//loop through the query of category names and dynamically print items based on what categories are in database
+if((!isset($_GET['view']) || $_GET['view'] != 'categories') && !isset($_GET['category'])) {
     $item = new Items();
     $result = $item->getAll();
     echo '<table>';
@@ -66,6 +67,7 @@ if(!isset($_GET['view']) || $_GET['view'] != 'categories') {
 }
 ?>
 <?php
+include_once '../manageCategories/categories.php';
 if(isset($_GET['view']) && $_GET['view'] == 'categories'){
 $category = new Categories();
 $result = $category ->getAll();
@@ -80,6 +82,35 @@ while($row = $result ->fetch_assoc()){
 }
 echo "<td><a href='../manageCategories/addCategories.php'>Add New Category</a></td>";
 echo "<table>";
+}
+
+
+else if(isset($_GET['category'])) {
+    $category = new Categories();
+    $item = new Items();
+    $result = $category->getNames();
+
+    echo '<table>';
+//$num = $result ->num_rows;
+    while ($row = $result->fetch_assoc()) {
+        if ($_GET['category'] == $row['name']) {
+            $resultset = $item->getByCategory($row['name']);
+            while ($rowset = $resultset->fetch_assoc()) {
+                printf("<tr>
+<td>%d</td>
+<td><img src='../images/%s'></td>
+<td>%s</td>
+<td>%s</td>
+<td>%.2f</td>
+<td>%s</td>
+<td><a href='../manageItems/itemsManager.php?id=%d'>Edit</a></td>
+<td><a href='../manageItems/itemsManager.php?id=%d&action=delete'>Delete</a></td>
+</tr>", $rowset['id'], $rowset['image'], $rowset['name'], $rowset['description'], $rowset['price'], $rowset['category'], $rowset['id'],
+                    $rowset['id']);
+            }
+        }
+    }
+    echo "<table>";
 }
 ?>
 
