@@ -30,14 +30,29 @@ public function updatePassword($username, $oldpassword, $newpassword){
     "'$username'" . " AND password = " . "'$oldpassword'");
 }
 
+public function getEmails(){
+    return $this->query("SELECT email FROM members");
+}
+
 
 
 }
 
 
 /*$admin = new Admins();
-$result = $admin ->getAll();
+$result = $admin ->getEmails();
+$listEmail = array();
+$counter = 0;
 //print_r($result);
 while($row = $result ->fetch_assoc()){
-    printf('%s %s %s %s <br>', $row['username'], $row['password'], $row['firstname'], $row['lastname']);
+    //printf('%s %s %s %s <br>', $row['username'], $row['password'], $row['firstname'], $row['lastname']);
+
+$listEmail[] = $row;
+
 }*/
+
+
+
+
+
+

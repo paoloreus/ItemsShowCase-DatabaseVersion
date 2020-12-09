@@ -16,6 +16,7 @@ echo "<br> <br>";
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 <title>Change Password</title>
 </head>
 <body>
@@ -25,16 +26,17 @@ echo "<br> <br>";
 <label for="oldpassword">Old Password</label> <input type="password" name="oldpassword" placeholder="Old Password">
     <br>
     <label for="newpassword">New Password</label> <input type="password" name="newpassword" placeholder="New Password">
-    <br><br>
+    <br>
     <?php
     if(@$_GET['invalid'] == true){
         ?>
-        <div class="alert-light text-danger text-center py-3"> <?php echo $_GET['invalid'] ?></div>
+        <div class="alert-light text-danger py-3"> <?php echo $_GET['invalid'] ?></div>
         <?php
-        echo "<br> <br>";
+        echo "<br>";
     }
     ?>
     <input type="submit" value="Submit Changes">
+    <button type="submit" formaction="../public/indexAdmin.php">Back to Home</button>
     <br><br>
 </form>
 </body>
