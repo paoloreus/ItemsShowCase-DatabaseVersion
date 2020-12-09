@@ -1,4 +1,8 @@
 <?php
+session_start();
+if(!isset($_SESSION['username'])){
+    header('Location: ../public/indexLogin.php');
+}
 include __DIR__ . '/items.php';
 
 $item = new Items();
@@ -44,6 +48,7 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'save'){
     Image: <input type="file" name="image" value="<?=$item_info['image']?>"<br>
     <input type="hidden" name="id" value="<?=$item_info['id']?>"><br><br>
     <input type="submit" value="Submit Changes">
+    <button type="submit" formaction="../public/indexAdmin.php">Back to Home</button>
 </form>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . '/../databases/productsDB.php';
+include_once __DIR__ . '/../databases/productsDB.php';
 
 class Items extends productsDB{
     public static $table_name = 'items';
@@ -18,6 +18,10 @@ class Items extends productsDB{
 
     public function getById($id){
         return $this->query('SELECT * FROM ' . self::$table_name . ' WHERE id = ' . $id);
+    }
+
+    public function getByCategory($category){
+        return $this->query('SELECT * FROM ' . self::$table_name . ' WHERE category = ' . "'$category'");
     }
 
 }
