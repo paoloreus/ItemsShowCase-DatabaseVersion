@@ -36,6 +36,7 @@ echo "<br> <br>";
     }
     ?>
     <input type="submit" value="Submit Changes">
+    <button type="submit" formaction="../public/indexAdmin.php">Back to Home</button>
     <br><br>
 </form>
 </body>
