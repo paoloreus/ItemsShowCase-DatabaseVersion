@@ -9,9 +9,12 @@ $item = new Items();
 
 if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'add'){
 $query = sprintf("INSERT INTO %s (name, description, price, category, image) VALUES ('%s', '%s', '%0.2f', '%s', '%s')",
-Items::$table_name, $_REQUEST['name'], $_REQUEST['description'], $_REQUEST['price'], $_REQUEST['category'], $_REQUEST['image']);
+Items::$table_name, $_REQUEST['name'], $_REQUEST['description'], $_REQUEST['price'], $_REQUEST['category'], $_FILES['image']['name']);
 
 $item->query($query);
+    $name_dir = "../images/";
+    $name_file = $name_dir . basename($_FILES['image']['name']);
+    move_uploaded_file($_FILES['image']['tmp_name'], $name_file);
 header('Location: ../public/indexAdmin.php');
 
 }
