@@ -1,5 +1,5 @@
-session_start();
 <?php
+session_start();
 function uploadFile($file,$name){
     $name_dir = "../images/";
     $name_file = $name_dir . basename($file);
@@ -21,13 +21,13 @@ $image_string ='';
 
 if(isset($_FILES['image']['name'][0])){
     if(!$_FILES['image']['name'][0]==''){
-    $item_info["image"] = $_FILES['image']['name'][0];
-    uploadFile($_FILES['image']['name'][0],$_FILES['image']['tmp_name'][0]);
+        $item_info["image"] = $_FILES['image']['name'][0];
+        uploadFile($_FILES['image']['name'][0],$_FILES['image']['tmp_name'][0]);
     }
 }
 
 if(isset($_POST['delete1'])) {
-        $item_info["image"] = "default.png";
+    $item_info["image"] = "default.png";
 }
 
 if(isset($_POST['select'])){
@@ -79,11 +79,11 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'save'){
 
 
     $query = sprintf("UPDATE %s SET name = '%s', description = '%s', price = '%.2f', category = '%s', image = '%s%s' WHERE id = %d",
-    Items::$table_name, $_REQUEST['name'], $_REQUEST['description'], $_REQUEST['price'],
+        Items::$table_name, $_REQUEST['name'], $_REQUEST['description'], $_REQUEST['price'],
         $_REQUEST['category'], $images_info[0],$image_string,$_REQUEST['id']);
     echo $query;
     $item ->query($query);
-//    header('location: ../public/indexAdmin.php');
+    header('location: ../public/indexAdmin.php');
 
 
 

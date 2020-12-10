@@ -37,7 +37,7 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'add'){
 
     $item->query($query);
 
-header('Location: ../public/indexAdmin.php');
+    header('Location: ../public/indexAdmin.php');
 
 }
 ?>

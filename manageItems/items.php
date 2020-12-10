@@ -29,16 +29,25 @@ class Items extends productsDB{
         return $this->query('SELECT * FROM ' . self::$table_name . ' WHERE category = ' . "'$category'");
     }
 
+    public function getSearchItems($text){
+        return $this->query('SELECT * FROM ' . self::$table_name . ' WHERE name = "'.$text.'"
+        OR description = "'.$text.'" AND
+        category IN (SELECT name FROM categories WHERE status = "SHOW")');
+    }
+
+    public function getShowItems(){
+        return $this->query('SELECT * FROM ' . self::$table_name . ' WHERE category IN (SELECT name FROM
+        categories WHERE status = "SHOW")');
+    }
+
 }
 
 /*
 $item = new Items();
 $result = $item ->getByName("Ford Mustang");
-
 while($row = $result->fetch_assoc()){
     printf("%d - %s (%s) $%.2f %s <br>", $row['id'], $row['name'], $row['description'], $row['price'], $row['category']);
 }
-
 $row = $item -> getById(1) ->fetch_assoc();
 printf("%d - %s (%s) $%.2f %s <br>", $row['id'], $row['name'], $row['description'], $row['price'], $row['category']);
 */
