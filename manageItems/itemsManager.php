@@ -27,6 +27,8 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'save'){
     $name_file = $name_dir . basename($_FILES['image']['name']);
     move_uploaded_file($_FILES['image']['tmp_name'], $name_file);
     header('location: ../public/indexAdmin.php');
+
+    <?=$item_info['image']?>
 }
 
 
@@ -45,7 +47,9 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'save'){
     Price: <input type="text" name="price" value="<?=$item_info['price']?>"><br>
     Category: <input type="text" name="category" value="<?=$item_info['category']?>"><br>
     Description: <br><textarea name="description"><?=$item_info['description']?></textarea><br>
-    Image: <input type="file" name="image" value="<?=$item_info['image']?>"<br>
+    
+
+    Image: <input type="file" name="image"><br>
     <input type="hidden" name="id" value="<?=$item_info['id']?>"><br><br>
     <input type="submit" value="Submit Changes">
     <button type="submit" formaction="../public/indexAdmin.php">Back to Home</button>
