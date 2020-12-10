@@ -1,6 +1,9 @@
 <?php
 include '../manageItems/items.php';
 include '../manageCategories/categories.php';
+$search = false;
+$searchText = "";
+
 ?>
 
 <!DOCTYPE html>
@@ -47,9 +50,18 @@ if(isset($_GET['category'])) {
         }
     }
 
+else if(isset($_GET['search'])){
+    $search = true;
+    $searchText = $_GET['search'];
+    $item = new Items();
+    $result = $item->getSearchItems($searchText);
+    echo "<table>";
+
+}
+
     else {
         $item = new Items();
-        $result = $item->getAll();
+        $result = $item->getShowItems();
         echo "<table>";
     }
             //echo '<table>';
