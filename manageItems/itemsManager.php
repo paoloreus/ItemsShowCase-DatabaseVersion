@@ -1,3 +1,4 @@
+session_start();
 <?php
 function uploadFile($file,$name){
     $name_dir = "../images/";
@@ -5,7 +6,6 @@ function uploadFile($file,$name){
     move_uploaded_file($name, $name_file);
 }
 
-session_start();
 if(!isset($_SESSION['username'])){
     header('Location: ../public/indexLogin.php');
 }
