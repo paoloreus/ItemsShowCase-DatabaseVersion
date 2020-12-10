@@ -47,7 +47,7 @@ if(isset($_POST['select'])){
 $images_info[]= $item_info['image'];
 for($x=2;$x<=5;$x++) {
     if(isset($_FILES['image']['name'][$x-1])) {
-        if (!$_FILES['image']['name'][$x-1]=='') {
+        if (!$_FILES['image']['name'][$x-1]=='' && !$select==$x) {
             $item_info["image$x"] = $_FILES['image']['name'][$x - 1];
             uploadFile($_FILES['image']['name'][$x - 1],$_FILES['image']['tmp_name'][$x - 1]);
         }
