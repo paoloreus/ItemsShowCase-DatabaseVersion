@@ -9,6 +9,8 @@ include '../manageItems/items.php';
 else {
     include '../manageCategories/categories.php';
 }
+$search = false;
+$searchText = "";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,8 +47,8 @@ else {
 include 'tb_layout.php';
 ?>
 <?php
-//loop through the query of category names and dynamically print items based on what categories are in database
-if((!isset($_GET['view']) || $_GET['view'] != 'categories') && !isset($_GET['category'])) {
+//loop through the query of category names and print items based on what categories are in database
+if((!isset($_GET['view']) || $_GET['view'] != 'categories') && !isset($_GET['category']) && !isset($_GET['search'])) {
     $item = new Items();
     $result = $item->getAll();
     echo '<table>';
@@ -88,14 +90,25 @@ echo "<table>";
 else if(isset($_GET['category'])) {
     $category = new Categories();
     $item = new Items();
-    $result = $category->getNames();
+    $resultset = $category->getNames();
 
-    echo '<table>';
-//$num = $result ->num_rows;
-    while ($row = $result->fetch_assoc()) {
-        if ($_GET['category'] == $row['name']) {
-            $resultset = $item->getByCategory($row['name']);
-            while ($rowset = $resultset->fetch_assoc()) {
+    while ($rowset = $resultset->fetch_assoc()) {
+        if ($_GET['category'] == $rowset['name']) {
+            $result = $item->getByCategory($rowset['name']);
+            echo "<table>";
+        }
+    }
+}
+
+else if(isset($_GET['search'])){
+    $search = true;
+    $searchText = $_GET['search'];
+    $item = new Items();
+    $result = $item->getSearchItems($searchText);
+    echo "<table>";
+
+}
+            while ($row = $result->fetch_assoc()) {
                 printf("<tr>
 <td>%d</td>
 <td><img src='../images/%s'></td>
@@ -105,13 +118,12 @@ else if(isset($_GET['category'])) {
 <td>%s</td>
 <td><a href='../manageItems/itemsManager.php?id=%d'>Edit</a></td>
 <td><a href='../manageItems/itemsManager.php?id=%d&action=delete'>Delete</a></td>
-</tr>", $rowset['id'], $rowset['image'], $rowset['name'], $rowset['description'], $rowset['price'], $rowset['category'], $rowset['id'],
-                    $rowset['id']);
+</tr>", $row['id'], $row['image'], $row['name'], $row['description'], $row['price'], $row['category'], $row['id'],
+                    $row['id']);
             }
-        }
-    }
+
     echo "<table>";
-}
+
 ?>
 
 </body>

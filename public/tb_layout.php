@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
-    <title>Cryptic Store</title>
+    <title>Buy For Fun</title>
 
     <!--<link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/starter-template/"> -->
 
@@ -79,8 +79,8 @@
                 </div>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" action="indexAdmin.php" method="get">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" name="search" aria-label="Search">
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
