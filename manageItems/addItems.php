@@ -13,6 +13,7 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'add'){
     $imageString='';
     $imageString2='';
 
+    //Generates 2 strings for adding images to the query.
     foreach ($_FILES['image'] as $image){
         if(!$_FILES['image']['name'][$count]=='') {
             $imageString .= ", image";
