@@ -2,7 +2,7 @@
 
 Class productsDB extends mysqli{
     protected static $instance;
-    public function __construct($host = 'localhost', $username = 'root', $password = 'password', $database = 'items',
+    public function __construct($host = 'localhost', $username = 'root', $password ='', $database = 'items',
                                 $port = '3306', $socket = false)
     {
         mysqli_report(MYSQLI_REPORT_OFF);
