@@ -9,7 +9,12 @@ class Items extends productsDB{
         'description' => '',
         'price' => 0,
         'category' => '',
-        'image' => ''
+        'image' => '',
+        'image2' => '',
+        'image3' => '',
+        'image4' => '',
+        'image5' => '',
+        'views' => ''
     );
 
     public function getAll(){
