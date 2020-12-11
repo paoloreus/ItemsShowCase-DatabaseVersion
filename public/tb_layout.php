@@ -53,16 +53,16 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="?">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="../public/indexAdmin.php">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../manageAdmins/logout.php">Logout</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="?view=items">Manage Items</a>
+                <a class="nav-link" href="../public/indexAdmin.php?view=items">Manage Items</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="?view=categories">Manage Categories</a>
+                <a class="nav-link" href="../public/indexAdmin.php?view=categories">Manage Categories</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../manageAdmins/changePassword.php">Change Password</a>
@@ -73,9 +73,16 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="?category=cars">Cars</a>
-                    <a class="dropdown-item" href="?category=phones">Phones</a>
-                    <a class="dropdown-item" href="?category=clothing">Clothing</a>
+                    <?php
+                    include_once '../manageCategories/categories.php';
+                    $category = new Categories();
+                    $result = $category->getNames();
+                    while($row = $result->fetch_assoc()){
+                        ?>
+                        <a class="dropdown-item" href="indexAdmin.php?category=<?php echo $row['name'] ?>"><?php echo $row['name'] ?></a>
+                        <?php
+                    }
+                    ?>
                 </div>
             </li>
         </ul>

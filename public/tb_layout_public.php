@@ -57,7 +57,7 @@
                 <a class="nav-link" href="../public/indexPublic.php">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../public/indexLogin.php">Login</a>
+                <a class="nav-link" href="indexLogin.php">Login</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../manageAdmins/addAdmin.php">Register Admin</a>
@@ -68,9 +68,15 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="../public/indexPublic.php?category=cars">Cars</a>
-                    <a class="dropdown-item" href="../public/indexPublic.php?category=phones">Phones</a>
-                    <a class="dropdown-item" href="../public/indexPublic.php?category=clothing">Clothing</a>
+                    <?php
+                    $category = new Categories();
+                    $result = $category->getShownNames();
+                    while($row = $result->fetch_assoc()){
+                        ?>
+                     <a class="dropdown-item" href="indexPublic.php?category=<?php echo $row['name'] ?>"><?php echo $row['name'] ?></a>
+                    <?php
+                    }
+                    ?>
                 </div>
             </li>
         </ul>
