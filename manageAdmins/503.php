@@ -7,7 +7,7 @@
 
     <style>
         body {
-            background: url(maintenance.png);
+            background: url(../manageAdmins/maintenance.png);
             background-repeat: no-repeat;
             background-size: 100% 100%;
         }

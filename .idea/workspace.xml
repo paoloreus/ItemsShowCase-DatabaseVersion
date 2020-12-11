@@ -31,7 +31,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../COMP1230/assignments/assignment1" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -72,15 +72,16 @@
       <screen x="0" y="0" width="1536" height="826" />
     </state>
     <state x="194" y="254" key="#SQL_Dialects/0.0.1536.826@0.0.1536.826" timestamp="1607035691935" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1607214866270">
-      <screen x="0" y="0" width="1536" height="826" />
+    <state x="686" y="210" key="FileChooserDialogImpl" timestamp="1607647780775">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.826@0.0.1536.826" timestamp="1607214866270" />
-    <state x="755" y="423" key="NewPhpFileDialog" timestamp="1607640453649">
+    <state x="686" y="210" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1607647780775" />
+    <state x="755" y="423" key="NewPhpFileDialog" timestamp="1607647718253">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="604" y="336" key="NewPhpFileDialog/0.0.1536.826@0.0.1536.826" timestamp="1607303505186" />
-    <state x="755" y="423" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607640453649" />
+    <state x="755" y="423" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607647718253" />
     <state x="431" y="147" width="672" height="678" key="search.everywhere.popup" timestamp="1607128832942">
       <screen x="0" y="0" width="1536" height="826" />
     </state>

@@ -40,6 +40,18 @@
             }
         }
     </style>
+    <script LANGUAGE="JavaScript">
+        //Author: Jeremy Buchanan
+        //Sends a popup requesting confirmation before switching site into maintenance mode.
+        function confirmSubmit()
+        {
+            var agree=confirm("Are you sure you wish to put the site into Maintenance? You will need to bring the site back up manually");
+            if (agree)
+                return true ;
+            else
+                return false ;
+        }
+    </script>
     <!-- Custom styles for this template -->
     <link href="starter-template.css" rel="stylesheet">
 </head>
@@ -84,6 +96,9 @@
                     }
                     ?>
                 </div>
+            </li>
+            <li class="nav-item">
+                <form method="post" action="../manageAdmins/enterMaintenance.php"><input type = hidden name = shutdown value=true><Input class="nav-link" type='submit' value='Begin Maintenance' name='submit' onClick='return confirmSubmit()'></form>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" action="indexAdmin.php" method="get">

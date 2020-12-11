@@ -4,7 +4,7 @@
   #Maintenance
   RewriteCond %{DOCUMENT_ROOT}/assignment2/offline.txt -f
   RewriteCond %{REMOTE_ADDR} !=xxx.xxx.xxx.xxx
-  RewriteCond %{REQUEST_URI} !=/assignment2/503.php
-  RewriteCond %{REQUEST_URI} !=/assignment2/maintenance.png
+  RewriteCond %{REQUEST_URI} !=/assignment2/manageAdmins/503.php
+  RewriteCond %{REQUEST_URI} !=/assignment2/manageAdmins/maintenance.png
   RewriteRule .*  503.php [R=503,L]
-  ErrorDocument 503 /assignment2/503.php
+  ErrorDocument 503 /assignment2/manageAdmins/503.php
