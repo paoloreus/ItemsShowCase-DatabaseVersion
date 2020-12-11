@@ -3,12 +3,16 @@ session_start();
 if(!isset($_SESSION['username'])){
     header('Location: indexLogin.php');
 }
-if($_GET['view'] != 'categories'){
-include '../manageItems/items.php';
+if(isset($_GET['view'])) {
+    if ($_GET['view'] != 'categories') {
+        include '../manageItems/items.php';
+    }else {
+        include '../manageCategories/categories.php';
+    }
+}else {
+    include '../manageItems/items.php';
 }
-else {
-    include '../manageCategories/categories.php';
-}
+
 $search = false;
 $searchText = "";
 ?>
@@ -19,6 +23,17 @@ $searchText = "";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buy For Fun</title>
     <style>
+        .link-lookalike {
+            background: none;
+            border: none;
+            color: blue;
+            cursor: pointer;
+        }
+
+        #link:hover {
+            text-decoration: underline;
+        }
+
         nav ul {
             list-style: none;
             display: flex;
@@ -40,6 +55,18 @@ $searchText = "";
 
         }
     </style>
+    <script LANGUAGE="JavaScript">
+        //Author: Jeremy Buchanan
+        //Sends a popup requesting confirmation before deleting an item from the database.
+        function confirmSubmit2()
+        {
+            var agree=confirm("Are you sure you wish to delete that item?");
+            if (agree)
+                return true ;
+            else
+                return false ;
+        }
+    </script>
 </head>
 
 <body>
@@ -61,7 +88,7 @@ if((!isset($_GET['view']) || $_GET['view'] != 'categories') && !isset($_GET['cat
 <td>$%.2f</td>
 <td>%s</td>
 <td><a href='../manageItems/itemsManager.php?id=%d'>Edit</a></td>
-<td><a href='../manageItems/itemsManager.php?id=%d&action=delete'>Delete</a></td>
+<td><form method='post'><input type = hidden name = 'id' value='%d'><input type = 'hidden' name = 'action' value='delete'><Input class='link-lookalike' id='link' type='submit' value='Delete' name='Delete' onClick='return confirmSubmit2()'></form></td>
 </tr>", $row['id'], $row['image'], $row['name'], $row['description'], $row['price'], $row['category'], $row['id'], $row['id']);
     }
     echo "<td><a href='../manageItems/addItems.php'>Add New Item</a></td>";
@@ -117,7 +144,7 @@ else if(isset($_GET['search'])){
 <td>%.2f</td>
 <td>%s</td>
 <td><a href='../manageItems/itemsManager.php?id=%d'>Edit</a></td>
-<td><a href='../manageItems/itemsManager.php?id=%d&action=delete'>Delete</a></td>
+<td></td><form method='post'><input type = hidden name = 'id' value='%d'><input type = 'hidden' name = 'action' value='delete'><Input class='link-lookalike' id='link' type='submit' value='Delete' name='Delete' onClick='return confirmSubmit2()'></form></td>
 </tr>", $row['id'], $row['image'], $row['name'], $row['description'], $row['price'], $row['category'], $row['id'],
                     $row['id']);
             }
