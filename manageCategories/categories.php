@@ -20,6 +20,10 @@ class Categories extends productsDB {
     public function getNames(){
         return $this->query('SELECT name FROM ' . self::$table_name);
     }
+
+    public function getShownNames(){
+        return $this->query('SELECT name FROM ' . self::$table_name . ' WHERE status = "SHOW"');
+    }
 }
 
 /*
