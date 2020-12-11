@@ -69,12 +69,12 @@ else if(isset($_GET['search'])){
                     printf("<tr>
 <td>%d</td>
 <td><img src='../images/%s'</td>
-<td>%s</td>
+<td><a href='itemDetails.php?id=%d'>%s</a></td>
 <td>%s</td>
 <td>$%.2f</td>
 <td>%s</td>
 </tr>
-", $row['id'], $row['image'], $row['name'], $row['description'], $row['price'], $row['category']);
+", $row['id'], $row['image'], $row['id'], $row['name'], $row['description'], $row['price'], $row['category']);
             }
 echo '</table>';
     //$item = new Items();
