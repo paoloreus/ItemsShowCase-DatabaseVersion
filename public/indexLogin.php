@@ -38,8 +38,8 @@ include '../manageAdmins/admins.php';
               ?>
               <div class="card-body">
                  <form action="../manageAdmins/login.php" method="post">
-                     <input type="text" name="username" placeholder="Username" class="form-control mb-3">
-                     <input type="password" name="password" placeholder="Password" class="form-control mb-3">
+                     <input type="text" name="username" placeholder="Username" class="form-control mb-3" value="adminp">
+                     <input type="password" name="password" placeholder="Password" class="form-control mb-3" value="password">
                      <button class="btn btn-success mt-3" name="login">Login</button>
                  </form>
               </div>
