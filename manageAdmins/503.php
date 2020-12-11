@@ -7,7 +7,7 @@
 
     <style>
         body {
-            background: url(../manageAdmins/maintenance.png);
+            background: url(https://f0t24.gblearn.com/comp1230/assignments/assignment2/Assignment2/manageAdmins/maintenance.png);
             background-repeat: no-repeat;
             background-size: 100% 100%;
         }
