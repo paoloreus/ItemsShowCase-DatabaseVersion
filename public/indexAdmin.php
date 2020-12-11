@@ -144,7 +144,7 @@ else if(isset($_GET['search'])){
 <td>%.2f</td>
 <td>%s</td>
 <td><a href='../manageItems/itemsManager.php?id=%d'>Edit</a></td>
-<td></td><form method='post'><input type = hidden name = 'id' value='%d'><input type = 'hidden' name = 'action' value='delete'><Input class='link-lookalike' id='link' type='submit' value='Delete' name='Delete' onClick='return confirmSubmit2()'></form></td>
+<td><form method='post'><input type = hidden name = 'id' value='%d'><input type = 'hidden' name = 'action' value='delete'><Input class='link-lookalike' id='link' type='submit' value='Delete' name='Delete' onClick='return confirmSubmit2()'></form></td>
 </tr>", $row['id'], $row['image'], $row['name'], $row['description'], $row['price'], $row['category'], $row['id'],
                     $row['id']);
             }
