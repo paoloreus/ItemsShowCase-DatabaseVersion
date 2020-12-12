@@ -15,7 +15,7 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'add'){
     $imageString2='';
     $uploadInfo = true;
     $isValid = true;
-
+    $uploadAttempt = false;
     if(empty($_REQUEST['name']) || empty($_REQUEST['description']) || empty($_REQUEST['category']) || empty($_REQUEST['price'])){
         //echo "Please fill in the blanks";
         ?>
@@ -32,6 +32,16 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'add'){
         $isValid = false;
     }
 
+    for($x=0;$x<5;$x++){
+        for($y=$x+1;$y<5;$y++){
+            if(isset($_FILES['image']['name'][$x]) && isset($_FILES['image']['name'][$y])) {
+                if ($_FILES['image']['name'][$x] == $_FILES['image']['name'][$y]) {
+                    $uploadInfo = false;
+                }
+            }
+        }
+    }
+
     //Generates 2 strings for adding images to the query.
     foreach ($_FILES['image'] as $image) {
         if (!$_FILES['image']['name'][$count] == '') {
@@ -44,9 +54,7 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'add'){
             $name_file = "../images/" . basename($_FILES['image']['name'][$count]);
             //attempts to read an image, if reading is unsuccessful that means it's not an image
             $check = getimagesize($_FILES['image']['tmp_name'][$count]);
-            if ($check != false) {
-                $uploadInfo = true;
-            } else {
+            if (!$check) {
                ?>
                 <p style="color:red" class="alert-light text-danger text-center py-3"> File is not an image</p>
                     <?php
@@ -61,20 +69,30 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'add'){
             }
 
             if ($uploadInfo == true && $isValid == true) {
-                move_uploaded_file($_FILES['image']['tmp_name'][$count], $name_file);
                 $count2++;
-
             }
-            else {
 
-                ?>
-         <p style="color:red" class="alert-light text-danger text-center py-3"> Failed to Upload</p>
-                 <?php
-            }
             }
             $count++;
-
         }
+        $count=0;
+        foreach ($_FILES['image'] as $image) {
+            $uploadAttempt = true;
+            if ($uploadInfo == true && $isValid == true) {
+                move_uploaded_file($_FILES['image']['tmp_name'][$count], $name_file);
+            }
+
+            $count++;
+        }
+     if(!$uploadInfo || !$isValid){
+         if($uploadAttempt){
+             ?>
+             <p style="color:red" class="alert-light text-danger text-center py-3"> Failed to Upload</p>
+             <?php
+         }
+    }
+
+
         if ($imageString == '') {
             $imageString = ", image";
             $imageString2 = "default.png";
@@ -88,11 +106,11 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'add'){
             header('Location: ../public/indexAdmin.php');
         }
 
-        else {
+        elseif(!$isValid) {
                 ?>
                 <p style="color:red" class="alert-light text-danger text-center py-3"> Invalid Input</p>
                 <?php
-            }
+        }
 
 }
 ?>

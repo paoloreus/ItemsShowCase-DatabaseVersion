@@ -1,6 +1,7 @@
 <?php
 session_start();
-function uploadFile($file,$name){
+function uploadFile($file,$name,$iName){
+    global $item;
     $name_dir = "../images/";
     $name_file = $name_dir . basename($file);
     //upload validations here
@@ -20,7 +21,9 @@ function uploadFile($file,$name){
         <?php
         return false;
     } */
-
+    $query = sprintf("UPDATE %s SET %s = '%s' WHERE id = %d",
+        Items::$table_name, $iName, $file, $_REQUEST['id']);
+    $item->query($query);
     move_uploaded_file($name, $name_file);
     return true;
 }
@@ -42,10 +45,12 @@ if(empty($item_info)){
 $image_string ='';
 
 if(isset($_FILES['image']['name'][0])){
-    if(!$_FILES['image']['name'][0]==''){
-        $item_info["image"] = $_FILES['image']['name'][0];
-        //Upload validations here
-        $uploadInfo = uploadFile($_FILES['image']['name'][0],$_FILES['image']['tmp_name'][0]);
+    if($_FILES['image']['name'][0]!=''){
+        if(uploadFile($_FILES['image']['name'][0],$_FILES['image']['tmp_name'][0],'image')){
+            $item_info["image"] = $_FILES['image']['name'][0];
+        } else {
+            $uploadInfo = false;
+        }
     }
 }
 
@@ -56,6 +61,7 @@ if(isset($_POST['delete1'])) {
     $item_info["image"] = "default.png";
 }
 
+$select = -1;
 if(isset($_POST['select'])){
     $select=$_POST['select'];
     if($select>1){
@@ -73,9 +79,12 @@ if(isset($_POST['select'])){
 $images_info[]= $item_info['image'];
 for($x=2;$x<=5;$x++) {
     if(isset($_FILES['image']['name'][$x-1])) {
-        if (!$_FILES['image']['name'][$x-1]=='' && !$select==$x) {
-            $item_info["image$x"] = $_FILES['image']['name'][$x - 1];
-            $uploadInfo = uploadFile($_FILES['image']['name'][$x - 1],$_FILES['image']['tmp_name'][$x - 1]);
+        if ($_FILES['image']['name'][$x-1]!='' && $select!=$x) {
+            if(uploadFile($_FILES['image']['name'][$x - 1],$_FILES['image']['tmp_name'][$x - 1],'image'.$x)){
+                $item_info["image$x"] = $_FILES['image']['name'][$x - 1];
+            } else {
+                $uploadInfo = false;
+            }
         }
     }
     if(isset($_POST["delete".$x])) {
@@ -84,7 +93,7 @@ for($x=2;$x<=5;$x++) {
         }
         $item_info["image$x"] = '';
     }
-    if (!$item_info["image$x"] == '') {
+    if ($item_info["image$x"] != '') {
         if ($images_info[0] == 'default.png') {
             $images_info[0] =$item_info["image$x"];
         } else {
@@ -136,7 +145,6 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'save'){
         $query = sprintf("UPDATE %s SET name = '%s', description = '%s', price = '%.2f', category = '%s', image = '%s%s' WHERE id = %d",
             Items::$table_name, $_REQUEST['name'], $_REQUEST['description'], $_REQUEST['price'],
             $_REQUEST['category'], $images_info[0], $image_string, $_REQUEST['id']);
-        echo $query;
         $item->query($query);
         header('location: ../public/indexAdmin.php');
     }
