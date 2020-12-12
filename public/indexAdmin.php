@@ -98,19 +98,19 @@ if((!isset($_GET['view']) || $_GET['view'] != 'categories') && !isset($_GET['cat
 <?php
 include_once '../manageCategories/categories.php';
 if(isset($_GET['view']) && $_GET['view'] == 'categories'){
-$category = new Categories();
-$result = $category ->getAll();
-echo '<table>';
-while($row = $result ->fetch_assoc()){
-    printf("<tr>
+    $category = new Categories();
+    $result = $category ->getAll();
+    echo '<table>';
+    while($row = $result ->fetch_assoc()){
+        printf("<tr>
 <td>%d</td>
 <td>%s</td>
 <td>%s</td>
 <td><a href='../manageCategories/categoriesManager.php?id=%d'>Edit</a></td>
 </tr>", $row['id'], $row['name'], $row['description'], $row['id']);
-}
-echo "<td><a href='../manageCategories/addCategories.php'>Add New Category</a></td>";
-echo "<table>";
+    }
+    echo "<td><a href='../manageCategories/addCategories.php'>Add New Category</a></td>";
+    echo "<table>";
 }
 
 
@@ -135,8 +135,8 @@ else if(isset($_GET['search'])){
     echo "<table>";
 
 }
-            while ($row = $result->fetch_assoc()) {
-                printf("<tr>
+while ($row = $result->fetch_assoc()) {
+    printf("<tr>
 <td>%d</td>
 <td><img src='../images/%s'></td>
 <td>%s</td>
@@ -146,13 +146,12 @@ else if(isset($_GET['search'])){
 <td><a href='../manageItems/itemsManager.php?id=%d'>Edit</a></td>
 <td><form method='post' action='../manageItems/itemsManager.php'><input type = hidden name = 'id' value='%d'><input type = 'hidden' name = 'action' value='delete'><Input class='link-lookalike' id='link' type='submit' value='Delete' name='Delete' onClick='return confirmSubmit2()'></form></td>
 </tr>", $row['id'], $row['image'], $row['name'], $row['description'], $row['price'], $row['category'], $row['id'],
-                    $row['id']);
-            }
+        $row['id']);
+}
 
-    echo "<table>";
+echo "<table>";
 
 ?>
 
 </body>
 </html>
-

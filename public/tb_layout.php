@@ -111,7 +111,7 @@
 <main role="main" class="container">
 
     <div class="starter-template">
-       <?php echo '<br> <br> <br>'  ?>
+        <?php echo '<br> <br> <br>'  ?>
     </div>
 
 </main><!-- /.container -->

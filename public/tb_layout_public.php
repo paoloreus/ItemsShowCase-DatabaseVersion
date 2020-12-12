@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -76,8 +75,8 @@
                     $result = $category->getShownNames();
                     while($row = $result->fetch_assoc()){
                         ?>
-                     <a class="dropdown-item" href="indexPublic.php?category=<?php echo $row['name'] ?>"><?php echo $row['name'] ?></a>
-                    <?php
+                        <a class="dropdown-item" href="indexPublic.php?category=<?php echo $row['name'] ?>"><?php echo $row['name'] ?></a>
+                        <?php
                     }
                     ?>
                 </div>

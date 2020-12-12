@@ -47,8 +47,8 @@ if(isset($_GET['category'])) {
             $result = $item->getByCategory($rowset['name']);
             echo "<table>";
         }
-        }
     }
+}
 
 else if(isset($_GET['search'])){
     $search = true;
@@ -59,14 +59,14 @@ else if(isset($_GET['search'])){
 
 }
 
-    else {
-        $item = new Items();
-        $result = $item->getShowItems();
-        echo "<table>";
-    }
-            //echo '<table>';
-            while ($row = $result->fetch_assoc()) {
-                    printf("<tr>
+else {
+    $item = new Items();
+    $result = $item->getShowItems();
+    echo "<table>";
+}
+//echo '<table>';
+while ($row = $result->fetch_assoc()) {
+    printf("<tr>
 <td>%d</td>
 <td><img src='../images/%s'</td>
 <td><a href='itemDetails.php?id=%d'>%s</a></td>
@@ -75,10 +75,10 @@ else if(isset($_GET['search'])){
 <td>%s</td>
 </tr>
 ", $row['id'], $row['image'], $row['id'], $row['name'], $row['description'], $row['price'], $row['category']);
-            }
+}
 echo '</table>';
-    //$item = new Items();
-    //$result = $item->getAll();
+//$item = new Items();
+//$result = $item->getAll();
 ?>
 </body>
 </html>
