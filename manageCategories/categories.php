@@ -24,6 +24,10 @@ class Categories extends productsDB {
     public function getShownNames(){
         return $this->query('SELECT name FROM ' . self::$table_name . ' WHERE status = "SHOW"');
     }
+
+    public function getActive(){
+        return $this->query('SELECT COUNT(*) FROM ' . self::$table_name . ' WHERE status = "SHOW"');
+    }
 }
 
 /*

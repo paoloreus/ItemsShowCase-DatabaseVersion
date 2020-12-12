@@ -5,11 +5,27 @@ include '../manageAdmins/validations.php';
 $category = new Categories();
 
 if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'add'){
-    if(validate($_POST['name'], 1) == false){
-            header('Location: ?invalid=Input is not valid');
+
+    //validating name field, can only contain letters and has max length of 60
+    if(validate($_POST['name'], 1) == false || strlen($_POST['name']) > 60){
+            //header('Location: ?invalid=Input is not valid');
+        ?>
+        <p style="color:red" class="alert-light text-danger py-3"> Input is not valid</p>
+        <?php
     }
+
+    else if(strlen($_POST['description']) > 100){
+        //header('Location: ?invalid=Input exceeds maximum characters allowed');
+        ?>
+        <p style="color:red" class="alert-light text-danger py-3"> Input exceeds maximum characters allowed</p>
+        <?php
+    }
+
     else if(empty($_POST['name']) || empty($_POST['description'])){
-        header('Location: ?empty=Please fill in the blanks');
+        //header('Location: ?empty=Please fill in the blanks');
+        ?>
+        <p style="color:red" class="alert-light text-danger py-3"> Please fill in the blanks</p>
+        <?php
     }
     else {
         $query = sprintf("INSERT INTO %s (name, description) VALUES ('%s', '%s')",
@@ -31,8 +47,8 @@ if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'add'){
 </head>
 <body>
 <form action="?action=add" method="post">
-    Title: <input type="text" name="name"><br>
-    Description: <br><textarea name="description"></textarea> <br>
+    Title: <input type="text" name="name" value="<?php if(isset($_REQUEST['name'])) echo $_REQUEST['name'];?>"><br>
+    Description: <br><textarea name="description"><?php if(isset($_REQUEST['description'])) echo $_REQUEST['description'];?> </textarea> <br>
     <?php
     if(@$_GET['empty'] == true){
         ?>
