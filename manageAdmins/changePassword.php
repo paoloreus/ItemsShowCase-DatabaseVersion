@@ -9,6 +9,12 @@ echo "Welcome " .$_SESSION['username'];
 echo "<br>";
 echo "Please fill out the information required to change your password";
 echo "<br> <br>";
+
+if(isset($_REQUEST['username'])){
+    ?>
+    <p style="color:red" class="alert-light text-danger py-3"> Input is not valid</p>
+    <?php
+}
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +27,7 @@ echo "<br> <br>";
 </head>
 <body>
 <form action="confirmPassword.php" method="post">
-<label for="username">Username</label> <input type="text" name="username" placeholder="Username">
+<label for="username">Username</label> <input type="text" name="username" placeholder="Username" value="<?php if(isset($_REQUEST['username'])) echo $_REQUEST['username']; ?>">
 <br>
 <label for="oldpassword">Old Password</label> <input type="password" name="oldpassword" placeholder="Old Password">
     <br>

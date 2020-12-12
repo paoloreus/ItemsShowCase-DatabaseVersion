@@ -3,7 +3,8 @@ session_start();
 if(isset($_SESSION['username'])) {
     session_destroy();
     echo "Redirecting ... ";
-    sleep(1);
-    header('Location: ../public/indexPublic.php');
-    exit();
+    //sleep(1);
+    //header('Location: ../public/indexPublic.php');
+    echo "<script type='text/javascript'>window.location='../public/indexPublic.php';</script>";
+    //exit();
 }

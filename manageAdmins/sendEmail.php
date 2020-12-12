@@ -7,7 +7,9 @@ use PHPMailer\PHPMailer\Exception;
 
 // Load Composer's autoloader
 require '../vendor/autoload.php';
-include __DIR__ . '/admins.php';
+include_once __DIR__ . '/admins.php';
+include_once '../manageItems/items.php';
+include_once '../manageCategories/categories.php';
 
 // Instantiation and passing `true` enables exceptions
 $mail = new PHPMailer(true);
@@ -43,10 +45,50 @@ try {
     //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
     //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 
-    $body = '<strong>Daily Report:</strong> This is the report generated for today';
+    $category = new Categories();
+    $resultCateg = $category->getActive();
+    $item = new Items();
+    $resultActive = $item->getActive();
+    $numRows = 0;
+    $numRowItems = 0;
+    $listTop = '';
+    $resultSet = $item->getTopItems();
+    $listShown = '';
+    $resultShown = $category->getShownNames();
+
+    //getting the number of active categories from the query
+    while($row = $resultCateg ->fetch_array()){
+        $numRows = $row[0];
+    }
+
+    //getting the number of active items from the query
+    while($row = $resultActive->fetch_array()){
+        $numRowItems = $row[0];
+    }
+
+    while($row = $resultSet->fetch_assoc()){
+        $listTop .= $row['name'];
+        $listTop .= "<br>";
+    }
+
+    while($row = $resultShown->fetch_assoc()){
+        $listShown .= $row['name'];
+        $listShown .= "<br>";
+    }
+
+    echo $listShown;
+
+
+    $body = '<strong>Daily Report:</strong> This is the report generated for today <br>
+       Number of Active Categories: ' . $numRows . '<br>
+       Number of Active Items: ' . $numRowItems . '<br><br>
+       List of Top Five Items: <br>'
+       . $listTop .   '<br>
+       List of active categories: <br>'
+       . $listShown . '<br>';
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = 'Report';
+    $mail->Subject = 'Site Report for ' . date("Y/m/d");
     $mail->Body = $body;
     $mail->AltBody = strip_tags($body);
 

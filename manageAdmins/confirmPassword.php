@@ -6,7 +6,7 @@ if(!isset($_SESSION['username'])){
     header('Location: ../public/indexLogin.php');
 }
 
-    if ($_POST['username'] == $_SESSION['username'] && $_POST['oldpassword'] == $_SESSION['password']) {
+    if ($_POST['username'] == $_SESSION['username'] && $_POST['oldpassword'] == $_SESSION['password'] && !empty($_POST['newpassword'])) {
         $admin = new Admins();
         $resultUpdate = $admin ->updatePassword($_POST['username'], $_POST['oldpassword'], $_POST['newpassword']);
         $result = $admin ->getLogin($_POST['username'], $_POST['newpassword']);
@@ -22,6 +22,11 @@ if(!isset($_SESSION['username'])){
         else {
             header('Location: changePassword.php?invalid=Member not found');
         }
+
+    }
+
+    else if($_POST['username'] == $_SESSION['username']){
+        header('Location: changePassword.php?username='.$_POST['username']);
 
     }
 
