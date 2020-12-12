@@ -40,6 +40,14 @@ class Items extends productsDB{
         categories WHERE status = "SHOW")');
     }
 
+    public function getTopItems(){
+        return $this->query('SELECT * FROM ' . self::$table_name . ' ORDER BY views DESC LIMIT 5');
+    }
+
+    public function getActive(){
+        return $this->query('SELECT COUNT(*) FROM ' . self::$table_name . ' WHERE status = "SHOW"');
+    }
+
 }
 
 /*
